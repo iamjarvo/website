@@ -12,6 +12,8 @@ task :sync do
 
   sh "rsync -r #{dir}/web/_site/ public/"
 
+  sh "git add public"
+
   version = Dir.chdir(dir) { `git log --pretty=oneline -1`[0..7] }
   sh "git commit -m 'Updated website to Rubinius #{version}.' -a"
 end
